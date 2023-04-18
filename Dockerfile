@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN apk add --no-cache gcc musl-dev mariadb-connector-c-dev \
+RUN apk add --no-cache libffi-dev gcc musl-dev mariadb-connector-c-dev \
     && pip install -r requirements.txt
 
 COPY . .
