@@ -6,7 +6,6 @@ COPY requirements.txt .
 
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev mariadb-dev \
     && pip install -r requirements.txt \
-    && apk del .build-deps
 
 COPY . .
 
