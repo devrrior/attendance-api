@@ -5,6 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 RUN apk add --no-cache libffi-dev gcc musl-dev mariadb-connector-c-dev \
+    && pip install --upgrade pip \
     && pip install -r requirements.txt
 
 COPY . .
