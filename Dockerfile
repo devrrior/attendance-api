@@ -11,4 +11,4 @@ RUN apk add --no-cache libffi-dev gcc musl-dev mariadb-connector-c-dev \
 COPY . .
 
 # fastAPI on railway
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "$PORT"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8080"]
