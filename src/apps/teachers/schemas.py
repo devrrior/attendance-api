@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class TeacherBase(BaseModel):
-    email: str
+    email: EmailStr
     first_name: str
     last_name: str
 

@@ -25,7 +25,6 @@ async def create(request: StudentCreate, current_user: Teacher = Depends(get_cur
     if student_exists:
         raise HTTPException(status_code=400, detail="Email already registered")
 
-    print(request.classroom_id)
     classroom = classroom_service.get_by_id(request.classroom_id, db)
 
     if classroom is None:
