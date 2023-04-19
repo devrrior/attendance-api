@@ -36,7 +36,12 @@ def create(classroom_id: int, student_id: int, current_user: Teacher = Depends(g
     if student.classroom_id != classroom_id:
         raise HTTPException(status_code=403, detail="Student does not belong to this classroom")
 
-    attendance = attendance_service.create(classroom_id, student_id, db)
+    # check if attendance already exists from today
+    attendance = attendance_service.get_by_classroom_id_and_student_id_and_date(classroom_id, student_id, db)
+
+    if attendance is None:
+        attendance = attendance_service.create(classroom_id, student_id, db)
+
     return attendance
 
 
