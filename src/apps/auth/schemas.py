@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class Credentials(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
