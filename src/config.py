@@ -5,6 +5,7 @@ load_dotenv()
 
 
 class Settings(BaseSettings):
+    backend_url: str
     database_url: str
     smtp_user: str
     smtp_password: str

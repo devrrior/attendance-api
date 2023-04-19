@@ -9,6 +9,7 @@ from src.utils.qr_generator import QRGenerator
 from . import service as student_service
 from src.apps.classrooms import service as classroom_service
 from .schemas import StudentCreate
+from src.config import settings
 
 router = APIRouter(
     prefix="/students",
@@ -35,7 +36,7 @@ async def create(request: StudentCreate, current_user: Teacher = Depends(get_cur
 
     student = student_service.create(request, db)
 
-    url = f"http://localhost:8000/attendance/student/{student.id}"
+    url = f"{settings.backend_url}/attendance/student/{student.id}"
 
     qr_file = QRGenerator.generate_qr_code(url)
     EmailService.send_email_with_qr_code(qr_file, student.email)
