@@ -36,7 +36,7 @@ async def create(request: StudentCreate, current_user: Teacher = Depends(get_cur
 
     student = student_service.create(request, db)
 
-    url = f"{settings.backend_url}/attendance/student/{student.id}"
+    url = f"{settings.backend_url}/attendance/classrooms/{classroom.id}/students/{student.id}"
 
     qr_file = QRGenerator.generate_qr_code(url)
     EmailService.send_email_with_qr_code(qr_file, student.email)

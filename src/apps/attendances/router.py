@@ -17,7 +17,7 @@ router = APIRouter(
 )
 
 
-@router.post("/classroom/{classroom_id}/student/{student_id}")
+@router.post("/classrooms/{classroom_id}/students/{student_id}")
 def create(classroom_id: int, student_id: int, current_user: Teacher = Depends(get_current_user),
            db: Session = Depends(get_db)):
     classroom = classroom_service.get_by_id(classroom_id, db)
@@ -40,7 +40,7 @@ def create(classroom_id: int, student_id: int, current_user: Teacher = Depends(g
     return attendance
 
 
-@router.get("/classroom/{classroom_id}/start_date/{start_date}/end_date/{end_date}")
+@router.get("/classrooms/{classroom_id}/start_date/{start_date}/end_date/{end_date}")
 def generate_report(classroom_id: int, start_date: str, end_date: str,
                     current_user: Teacher = Depends(get_current_user),
                     db: Session = Depends(get_db)):

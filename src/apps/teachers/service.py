@@ -14,5 +14,9 @@ def create(request: schemas.TeacherCreate, db: Session):
     return new_teacher
 
 
+def get_by_id(teacher_id: int, db: Session):
+    return db.query(models.Teacher).filter(models.Teacher.id == teacher_id).first()
+
+
 def get_by_email(email: str, db: Session):
     return db.query(models.Teacher).filter(models.Teacher.email == email).first()

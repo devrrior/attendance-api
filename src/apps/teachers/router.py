@@ -23,9 +23,9 @@ def create(request: TeacherCreate, db: Session = Depends(get_db)):
     return new_teacher
 
 
-@router.get("/{email}", response_model=Teacher)
-def get_by_email(email: str, db: Session = Depends(get_db)):
-    teacher = service.get_by_email(email, db)
+@router.get("/{teacher_id}", response_model=Teacher)
+def get_by_email(teacher_id: int, db: Session = Depends(get_db)):
+    teacher = service.get_by_id(teacher_id, db)
 
     if teacher is None:
         raise HTTPException(status_code=404, detail="Teacher not found")
