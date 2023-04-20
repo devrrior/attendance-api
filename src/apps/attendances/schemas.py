@@ -1,10 +1,10 @@
-from datetime import datetime
+from datetime import date
 
 from pydantic import BaseModel
 
 
 class AttendanceBase(BaseModel):
-    date: datetime
+    date: date
     attended: bool
 
 
@@ -15,6 +15,7 @@ class AttendanceCreate(AttendanceBase):
 class Attendance(AttendanceBase):
     id: int
     student_id: int
+    classroom_id: int
 
     class Config:
         orm_mode = True
