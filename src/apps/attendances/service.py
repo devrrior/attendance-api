@@ -14,7 +14,6 @@ def create(classroom_id: int, student_id: int, db: Session):
     return new_attendance
 
 
-# quiero obtener todas las asistencias de un classroom_id y un rango de fechas
 def get_list_by_classroom_id_and_date_range(classroom_id: int, start_date: str, end_date: str, db: Session):
     attendances = db.query(models.Attendance).filter(models.Attendance.classroom_id == classroom_id).filter(
         models.Attendance.date.between(start_date, end_date)).all()

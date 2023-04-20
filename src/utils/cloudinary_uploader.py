@@ -10,9 +10,9 @@ class CloudinaryUploader:
     @staticmethod
     def upload_file(filename, folder="/attendance-reports"):
         cloudinary.config(
-            cloud_name=settings.CLOUDINARY_CLOUD_NAME,
-            api_key=settings.CLOUDINARY_API_KEY,
-            api_secret=settings.CLOUDINARY_API_SECRET
+            cloud_name=settings.cloudinary_cloud_name,
+            api_key=settings.cloudinary_api_key,
+            api_secret=settings.cloudinary_secret_key
         )
         report_id = str(uuid.uuid4())
 
