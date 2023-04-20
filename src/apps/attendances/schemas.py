@@ -20,6 +20,5 @@ class Attendance(AttendanceBase):
         orm_mode = True
 
 
-class ReportGenerate(BaseModel):
-    start_date: str
-    end_date: str
+class GenerateReportResponse(BaseModel):
+    url: str

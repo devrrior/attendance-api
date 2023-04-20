@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 
-@router.post("/", response_model=Teacher)
+@router.post("/", response_model=Teacher, status_code=201)
 def create(request: TeacherCreate, db: Session = Depends(get_db)):
     teacher_exists = service.get_by_email(request.email, db)
 

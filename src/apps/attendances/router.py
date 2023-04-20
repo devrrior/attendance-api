@@ -9,6 +9,7 @@ from src.database.session import get_db
 from src.utils.cloudinary_uploader import CloudinaryUploader
 from src.utils.report_generator import ReportGenerator
 from . import service as attendance_service
+from .schemas import Attendance, GenerateReportResponse
 
 router = APIRouter(
     prefix="/attendances",
@@ -17,7 +18,7 @@ router = APIRouter(
 )
 
 
-@router.post("/classrooms/{classroom_id}/students/{student_id}")
+@router.post("/classrooms/{classroom_id}/students/{student_id}", status_code=201, response_model=Attendance)
 def create(classroom_id: int, student_id: int, current_user: Teacher = Depends(get_current_user),
            db: Session = Depends(get_db)):
     classroom = classroom_service.get_by_id(classroom_id, db)
@@ -45,7 +46,8 @@ def create(classroom_id: int, student_id: int, current_user: Teacher = Depends(g
     return attendance
 
 
-@router.get("/classrooms/{classroom_id}/start_date/{start_date}/end_date/{end_date}")
+@router.get("/classrooms/{classroom_id}/start_date/{start_date}/end_date/{end_date}",
+            response_model=GenerateReportResponse)
 def generate_report(classroom_id: int, start_date: str, end_date: str,
                     current_user: Teacher = Depends(get_current_user),
                     db: Session = Depends(get_db)):

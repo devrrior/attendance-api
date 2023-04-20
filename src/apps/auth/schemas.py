@@ -1,9 +1,13 @@
 from pydantic import BaseModel, EmailStr
 
 
-class Credentials(BaseModel):
+class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+
+
+class LoginResponse(BaseModel):
+    token: str
 
 
 class TokenPayload(BaseModel):

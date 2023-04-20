@@ -14,14 +14,14 @@ router = APIRouter(
 )
 
 
-@router.post("/")
+@router.post("/", response_model=Classroom, status_code=201)
 def create(classroom: ClassroomCreate, current_user: Teacher = Depends(get_current_user),
            db: Session = Depends(get_db)):
     classroom = service.create(classroom, current_user.id, db)
     return classroom
 
 
-@router.get("/")
+@router.get("/", response_model=list[Classroom])
 def get_all(current_user: Teacher = Depends(get_current_user), db: Session = Depends(get_db)):
     classrooms = service.get_list_by_teacher_id(current_user.id, db)
     return classrooms
