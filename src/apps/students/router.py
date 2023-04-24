@@ -21,11 +21,6 @@ router = APIRouter(
 @router.post("/", response_model=Student, status_code=201)
 async def create(request: StudentCreate, current_user: Teacher = Depends(get_current_user),
                  db: Session = Depends(get_db)):
-    student_exists = student_service.get_by_email(request.email, db)
-
-    if student_exists:
-        raise HTTPException(status_code=400, detail="Email already registered")
-
     classroom = classroom_service.get_by_id(request.classroom_id, db)
 
     if classroom is None:

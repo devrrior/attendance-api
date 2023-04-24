@@ -8,7 +8,7 @@ class Student(Base):
     __tablename__ = "students"
 
     id = Column(Integer, primary_key=True, index=True)
-    email = Column(String(255), unique=True)
+    email = Column(String(255))
     first_name = Column(String(255))
     last_name = Column(String(255))
     classroom_id = Column(Integer, ForeignKey("classrooms.id"))
